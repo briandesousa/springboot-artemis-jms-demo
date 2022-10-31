@@ -26,10 +26,14 @@ public class JmsDemoApplication {
 	@Value("${app.queue.name}")
 	String queueName;
 
+	@Value ("${spring.artemis.broker-url}")
+	String brokerURL;
+
 	@Bean
 	CommandLineRunner start(JmsTemplate template) {
 		return args -> {
 			log.info("JmsDemoApplication - CommandLineRunner started...");
+			log.info("Connected to Artemis brokers: " + brokerURL);
 			
 			Scanner scanner = new Scanner(System.in);
 
